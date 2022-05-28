@@ -1,0 +1,38 @@
+
+div.mainContainer{
+    background-color: #f08080;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 5000px;
+    
+    
+}
+html{
+    background-color:antiquewhite;
+}
+div.CalculatorContainer{
+   padding-top: 100px;
+}
+div.CashFlowCalculator{
+    
+    background-color:aquamarine;
+    margin-left: 100px;
+    text-align: center;
+    width: 500px;
+    position:absolute;
+}
+div#IncomeChart{
+    background-color: cyan;
+}
+div.RevenueEncompass{
+    background-color: aquamarine;
+    margin-left: 1000px;
+    text-align: center;
+    width: 500px;
+    position:absolute;
+    
+}
+div.AccumChart{
+    position:relative;
+    margin-top: 1000px;
+}
