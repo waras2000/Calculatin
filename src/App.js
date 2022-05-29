@@ -3,7 +3,7 @@ import {useState} from "react"
 
 import Navi from './Components/Navi';
 import CompanyMetrics from './Components/CompanyMetrics';
-
+//Took out NAV
 import Chart1 from './Components/BarChart'
 
 function App() {

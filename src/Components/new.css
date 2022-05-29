@@ -4,6 +4,7 @@ div.mainContainer{
     margin: auto;
     text-align: center;
     padding-bottom: 5000px;
+    position:relative;
     
     
 }

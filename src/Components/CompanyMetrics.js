@@ -118,24 +118,41 @@ const[accumAverageCashflow, setAccumAverageCashflow]= useState(0);
 
 const[cash_list,setcash_list] = useState([]);
 
-
+const[accumAverageRevenue,setAccumAverageRevenue] = useState(0);
 //Currently its not working since we have to use the button 
 //and then re-render the chart
+
+//Does not properly compute ATM
 useEffect(()=>{
-  var sum=0
-  var len=0
+  var cash_sum=0
+  var cash_len=0
   cashArray.forEach(x => {
-    sum += x;
+    cash_sum += x;
     if (x>0){
-      len+=1;
+      cash_len+=1;
     }
   })
 
-
+  
   setAccumAverageCashflow(
-    sum/len
+    cash_sum/cash_len
   )
+ 
 
+  })
+  useEffect(()=>{
+    var rev_sum=0
+    var rev_len=0
+    revArray.forEach(a=>{
+      rev_sum+=a;
+      if(a>0){
+        rev_len+=1
+      }
+    })
+  
+    setAccumAverageRevenue(
+      rev_sum/rev_len
+    )
   })
 
 const UserData = [
@@ -149,6 +166,8 @@ const UserData = [
       currentCashflowAverage:cashPeriod_1,
       currentRevenueAverage:revPeriod_1,
       accumAverageCashflow:accumAverageCashflow,
+      accumAverageRevenue:accumAverageRevenue,
+
       
       
       
@@ -165,7 +184,8 @@ const UserData = [
       currentRevenuePeriod:revPeriod_2,
       currentCashflowAverage:((parseInt(cashPeriod_1)+parseInt(cashPeriod_2))/2),
       currentRevenueAverage:((parseInt(revPeriod_1)+parseInt(revPeriod_2))/2),
-      accumAverageCashflow:accumAverageCashflow
+      accumAverageCashflow:accumAverageCashflow,
+      accumAverageRevenue:accumAverageRevenue,
       
 
       
@@ -176,7 +196,8 @@ const UserData = [
       currentRevenuePeriod:revPeriod_3,
       currentCashflowAverage:((parseInt(cashPeriod_2)+parseInt(cashPeriod_3))/2),
       currentRevenueAverage:((parseInt(revPeriod_2)+parseInt(revPeriod_3))/2),
-      accumAverageCashflow:accumAverageCashflow
+      accumAverageCashflow:accumAverageCashflow,
+      accumAverageRevenue:accumAverageRevenue,
     },
     {
       period: '4',
@@ -185,6 +206,7 @@ const UserData = [
       currentCashflowAverage:(parseInt(cashPeriod_3)+parseInt(cashPeriod_4))/2,
       currentRevenueAverage:((parseInt(revPeriod_3)+parseInt(revPeriod_4))/2),
       accumAverageCashflow:accumAverageCashflow,
+      accumAverageRevenue:accumAverageRevenue,
     },
     {
       period: '5',
@@ -193,6 +215,7 @@ const UserData = [
       currentCashflowAverage:(parseInt(cashPeriod_4)+parseInt(cashPeriod_5))/2,
       currentRevenueAverage:((parseInt(revPeriod_4)+parseInt(revPeriod_5))/2),
       accumAverageCashflow:accumAverageCashflow,
+      accumAverageRevenue:accumAverageRevenue,
     },
     {period: '6',
     currentCashflowPeriod: cashPeriod_6,
@@ -200,6 +223,7 @@ const UserData = [
     currentCashflowAverage:(parseInt(cashPeriod_5)+parseInt(cashPeriod_6))/2,
     currentRevenueAverage:((parseInt(revPeriod_5)+parseInt(revPeriod_6))/2),
     accumAverageCashflow:accumAverageCashflow,
+    accumAverageRevenue:accumAverageRevenue,
     },
     {period: '7',
     currentCashflowPeriod: cashPeriod_7,
@@ -207,6 +231,7 @@ const UserData = [
     currentCashflowAverage:(parseInt(cashPeriod_6)+parseInt(cashPeriod_7))/2,
     currentRevenueAverage:((parseInt(revPeriod_6)+parseInt(revPeriod_7))/2),
     accumAverageCashflow:accumAverageCashflow,
+    accumAverageRevenue:accumAverageRevenue,
     },
     {period: '8',
     currentCashflowPeriod: cashPeriod_8,
@@ -214,6 +239,7 @@ const UserData = [
     currentCashflowAverage:(parseInt(cashPeriod_7)+parseInt(cashPeriod_8))/2,
     currentRevenueAverage:((parseInt(revPeriod_7)+parseInt(revPeriod_8))/2),
     accumAverageCashflow:accumAverageCashflow,
+    accumAverageRevenue:accumAverageRevenue,
     },
     {period: '9',
     currentCashflowPeriod: cashPeriod_9,
@@ -221,6 +247,7 @@ const UserData = [
     currentCashflowAverage:(parseInt(cashPeriod_8)+parseInt(cashPeriod_9))/2,
     currentRevenueAverage:((parseInt(revPeriod_8)+parseInt(revPeriod_9))/2),
     accumAverageCashflow:accumAverageCashflow,
+    accumAverageRevenue:accumAverageRevenue,
     },
     {period: '10',
     currentCashflowPeriod: cashPeriod_10,
@@ -228,6 +255,7 @@ const UserData = [
     currentCashflowAverage:(parseInt(cashPeriod_9)+parseInt(cashPeriod_10))/2,
     currentRevenueAverage:((parseInt(revPeriod_9)+parseInt(revPeriod_10))/2),
     accumAverageCashflow:accumAverageCashflow,
+    accumAverageRevenue:accumAverageRevenue,
     },
   ];
   function addDate(){
@@ -268,7 +296,9 @@ const[currentRevenueAverage,setCurrentRevenueAverage]=useState(0);
     label:"All Time Average Cashflow",
     data: UserData.map((data)=>data.accumAverageCashflow)
     
-  }]
+  },
+
+]
    
   
 
@@ -317,7 +347,7 @@ useEffect(()=>{
 })
 
 
-},[cashPeriod_1,cashPeriod_2,cashPeriod_3,cashPeriod_4,cashPeriod_5,cashPeriod_6,cashPeriod_7,cashPeriod_8,cashPeriod_9,cashPeriod_10])
+},[cashPeriod_1,cashPeriod_2,cashPeriod_3,cashPeriod_4,cashPeriod_5,cashPeriod_6,cashPeriod_7,cashPeriod_8,cashPeriod_9,cashPeriod_10,accumAverageCashflow])
 
  
 const [revenueData,setRevenueData] = useState({
@@ -340,7 +370,20 @@ const [revenueData,setRevenueData] = useState({
     'rgba(18,18,18,.8)'
     ],
     data: UserData.map((data)=>data.currentRevenueAverage)
-  }]
+  },
+{
+  type:'line',
+  order:1,
+  label:"All Time Average Revenue",
+  borderColor:[
+    'rgba(0,0,0,.9)',
+    
+
+  ],
+  data: UserData.map((data)=>data.accumAverageRevenue)
+  
+
+}]
  
 
 
@@ -373,6 +416,19 @@ datasets: [{
     'rgba(18,18,18,.8)'
   ],
   data: UserData.map((data)=>data.currentRevenueAverage)
+},
+{
+  type:'line',
+  order:1,
+  label:"All Time Average Revenue",
+  borderColor:[
+    'rgba(0,0,0,.9)',
+    
+
+  ],
+  data: UserData.map((data)=>data.accumAverageRevenue)
+  
+
 }
 
 
@@ -389,7 +445,7 @@ datasets: [{
 
 
 
-},[revPeriod_1,revPeriod_2,revPeriod_3,revPeriod_4,revPeriod_5,revPeriod_6,revPeriod_7,revPeriod_8,revPeriod_9,revPeriod_10])
+},[revPeriod_1,revPeriod_2,revPeriod_3,revPeriod_4,revPeriod_5,revPeriod_6,revPeriod_7,revPeriod_8,revPeriod_9,revPeriod_10,accumAverageRevenue])
 
 
 
@@ -463,6 +519,28 @@ datasets: [{
     'rgba(18,18,18,.8)'
   ],
   data: UserData.map((data)=>data.currentRevenueAverage)
+},
+{
+  type:'line',
+  order:1,
+  label:"All Time Average Revenue",
+  borderColor:[
+    'rgba(0,0,0,.9)',
+    
+
+  ],
+  data: UserData.map((data)=>data.accumAverageRevenue)
+  
+
+},
+{
+  type:'line',
+  order:1,
+  borderColor:[
+    'rgba(157,0,81,.8)'],
+  label:"All Time Average Cashflow",
+  data: UserData.map((data)=>data.accumAverageCashflow)
+  
 }
 
 ]
@@ -478,7 +556,8 @@ datasets: [{
 
 
 },[revPeriod_1,revPeriod_2,revPeriod_3,revPeriod_4,revPeriod_5,revPeriod_6,revPeriod_7,revPeriod_8,revPeriod_9,revPeriod_10,cashPeriod_1,
-  cashPeriod_2,cashPeriod_3,cashPeriod_4,cashPeriod_5,cashPeriod_6,cashPeriod_7,cashPeriod_8,cashPeriod_9,cashPeriod_10])
+  cashPeriod_2,cashPeriod_3,cashPeriod_4,cashPeriod_5,cashPeriod_6,cashPeriod_7,cashPeriod_8,cashPeriod_9,cashPeriod_10
+,accumAverageCashflow,accumAverageRevenue])
 
 
 
