@@ -2,6 +2,7 @@ import React from "react"
 import './new.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Nav,NavDropdown,Container} from 'react-bootstrap';
+//Sets a default navigation bar template
 export default class Navi extends React.Component{
     render(){
     return(

@@ -35,4 +35,5 @@ div.RevenueEncompass{
 div.AccumChart{
     position:relative;
     margin-top: 1000px;
+    background-color: white;
 }
