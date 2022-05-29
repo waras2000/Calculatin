@@ -7,7 +7,7 @@ import { registerables } from "chart.js";
 //NOTE: NEED TO ADD IN SOME SORT OF DIAGNOSIS TELLING THE USER IF REVENUE AND
 //CASH FLOW ARE RELIABLE OR VOLATILE
 //Add in Debt-> Calculate if debt can be paid off
-
+//Rando
 //Compare to US INFLATION AND GDP AND GENERAL MARKET
 const CompanyMetrics=(props)=>{
 
